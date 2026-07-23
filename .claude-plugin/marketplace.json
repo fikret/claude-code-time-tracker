@@ -1,0 +1,19 @@
+{
+  "name": "time-tracker",
+  "owner": {
+    "name": "Fikret Tozak"
+  },
+  "description": "Claude Code Time Tracker — see per-project time & token usage in your status line.",
+  "plugins": [
+    {
+      "name": "time-tracker",
+      "displayName": "Time Tracker",
+      "source": "./",
+      "description": "Per-project time & token tracking in your status line, computed from session transcripts.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Fikret Tozak"
+      }
+    }
+  ]
+}

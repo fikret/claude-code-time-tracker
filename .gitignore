@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.cc-time-cache/
+report.html
+report-data.json
+.DS_Store
