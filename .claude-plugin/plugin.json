@@ -7,12 +7,5 @@
     "name": "Fikret Tozak"
   },
   "keywords": ["statusline", "time-tracking", "tokens", "cost", "productivity"],
-  "commands": ["./commands/"],
-  "settings.json": {
-    "statusLine": {
-      "type": "command",
-      "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/statusline.py\" \"${CLAUDE_PLUGIN_DATA}\"",
-      "padding": 0
-    }
-  }
+  "commands": ["./commands/"]
 }

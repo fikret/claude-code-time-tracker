@@ -28,11 +28,30 @@ rather than raw wall-clock.
 ```
 /plugin marketplace add fikret/claude-code-time-tracker
 /plugin install time-tracker@time-tracker
+/time-tracker:setup          # enable the status line
 ```
 
-Then open Claude Code in any project — the status line appears at the bottom.
+Then **restart Claude Code** (or start a new session) — the status line appears at the bottom.
 
 > Requires `python3` on your PATH (preinstalled on macOS and most Linux).
+
+### Why the extra `setup` step?
+
+Claude Code plugins can register commands, hooks, agents and MCP servers, but **not the
+main status line** — only the user's own `~/.claude/settings.json` can. So `/time-tracker:setup`
+copies the tracker to a stable path (`~/.claude/time-tracker/`) and adds the `statusLine`
+entry for you. To disable it again, run
+`python3 "${CLAUDE_PLUGIN_ROOT}/scripts/install-statusline.py" --uninstall`.
+
+Prefer to do it by hand? Add this to `~/.claude/settings.json`:
+
+```json
+"statusLine": {
+  "type": "command",
+  "command": "python3 ~/.claude/time-tracker/statusline.py ~/.claude/.cc-time-cache"
+}
+```
+(after copying `scripts/statusline.py` and `scripts/ccstats.py` into `~/.claude/time-tracker/`).
 
 ## Command
 
