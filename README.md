@@ -26,7 +26,7 @@ rather than raw wall-clock.
 ## Install
 
 ```
-/plugin marketplace add tozakfikret/claude-code-time-tracker
+/plugin marketplace add fikret/claude-code-time-tracker
 /plugin install time-tracker@time-tracker
 ```
 
