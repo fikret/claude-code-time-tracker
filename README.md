@@ -9,7 +9,8 @@ Claude Code status line.
 
 - **total** — active work time on this project, all-time
 - **today** — active work time today
-- **session** — wall-clock time in the current session
+- **session** — active work time in the current session (same break rule as
+  `total`; an idle, still-open window — or a sleeping computer — adds nothing)
 - **tokens / ~cost** — total tokens and an estimated API cost for this project
 
 Everything is computed from Claude Code's own session transcripts

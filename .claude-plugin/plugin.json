@@ -1,7 +1,7 @@
 {
   "name": "time-tracker",
   "displayName": "Time Tracker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Per-project time & token tracking in your Claude Code status line, computed from session transcripts.",
   "author": {
     "name": "Fikret Tozak"

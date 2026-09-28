@@ -10,7 +10,7 @@
       "displayName": "Time Tracker",
       "source": "./",
       "description": "Per-project time & token tracking in your status line, computed from session transcripts.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Fikret Tozak"
       }

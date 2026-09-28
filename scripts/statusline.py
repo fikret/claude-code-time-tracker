@@ -7,6 +7,9 @@ ANSI-colored line summarizing time & tokens for the CURRENT project:
 
   ⏱ elabRandevu · 12h5m total · 45m today · 23m session · 1.4B tok ~$2.8k
 
+"session" is the ACTIVE time of the current session (same gap rule as
+"total"), not wall-clock: an idle or sleeping, still-open window adds nothing.
+
 The active project is identified from `transcript_path` (its parent directory
 is the project's transcript folder). All heavy lifting is cached per-file by
 ccstats, so this stays fast enough to run on every refresh.
@@ -77,12 +80,18 @@ def main():
     if today > 0:
         parts.append(f"{GREEN}{ccstats.fmt_dur(today)}{RESET}{DIM} today{RESET}")
 
-    # session wall-clock from the payload (falls back silently if absent)
+    # session = ACTIVE time in the current transcript, same gap rule as "total".
+    # Not the payload's cost.total_duration_ms: that is wall-clock since the
+    # session was first opened and keeps running while the window stays open,
+    # including while the computer sleeps (a session left open for two weeks
+    # showed "409h session" against 36h of actual work).
     session_secs = 0
-    cost = payload.get("cost") or {}
-    dur_ms = cost.get("total_duration_ms")
-    if isinstance(dur_ms, (int, float)) and dur_ms > 0:
-        session_secs = dur_ms / 1000.0
+    try:
+        fd = ccstats.analyze_file(transcript, gap, cache_dir)
+        if fd:
+            session_secs = sum(b["seconds"] for b in fd.get("blocks") or [])
+    except Exception:
+        session_secs = 0
     if session_secs > 0:
         parts.append(f"{ccstats.fmt_dur(session_secs)}{DIM} session{RESET}")
 
